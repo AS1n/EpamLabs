@@ -1,0 +1,9 @@
+2019-03-10 16:54:26 DEBUG Controller:28 - getEntity method is called!
+2019-03-10 16:54:26 DEBUG Controller:35 - getEntity method is completed
+2019-03-10 17:08:36 DEBUG Controller:28 - getEntity method is called!
+2019-03-10 17:08:36 DEBUG Controller:39 - getEntity method is completed
+2019-03-10 17:08:52 DEBUG Controller:28 - getEntity method is called!
+2019-03-10 17:08:52 ERROR Controller:31 - Invalid params! Need parameter num!
+2019-03-10 17:10:01 DEBUG Controller:28 - getEntity method is called!
+2019-03-10 17:10:01 ERROR Controller:35 - Invalid params! Param num must be > 2
+2019-03-10 19:27:18 DEBUG Controller:29 - getEntity method is called!

@@ -13,14 +13,22 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/controller")
 public class Controller {
 
+    private Service service;
+
     @Autowired
-    Service service;
+    public Controller(Service service) {
+        this.service = service;
+    }
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public ResponseEntity<Entity> getEntity(
-            @RequestParam(name = "num") Integer num
+            @RequestParam(name = "num", required = false) String numS
     ) {
-        return ResponseEntity.ok(new Entity(service.getEven(num), service.getSimple(num)));
+
+        Entity entity = service.getEntity(numS);
+        if(entity.getErrorMsg()!=null)
+            return ResponseEntity.status(400).body(entity);
+        return ResponseEntity.ok(entity);
     }
 
 
