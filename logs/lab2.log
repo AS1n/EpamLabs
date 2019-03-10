@@ -7,3 +7,21 @@
 2019-03-10 17:10:01 DEBUG Controller:28 - getEntity method is called!
 2019-03-10 17:10:01 ERROR Controller:35 - Invalid params! Param num must be > 2
 2019-03-10 19:27:18 DEBUG Controller:29 - getEntity method is called!
+2019-03-10 20:34:45 DEBUG Controller:16 - getEntity method is called!
+2019-03-10 20:34:45 DEBUG Controller:32 - getEntity method is successfully completed
+2019-03-10 20:38:08 DEBUG Controller:16 - getEntity method is called!
+2019-03-10 20:38:08 ERROR Controller:49 - Invalid params! Param num must be > 2
+2019-03-10 20:38:35 DEBUG Controller:16 - getEntity method is called!
+2019-03-10 20:38:35 ERROR Controller:49 - Invalid params! Param num must be a number
+2019-03-10 20:38:51 DEBUG Controller:16 - getEntity method is called!
+2019-03-10 20:38:51 ERROR Controller:49 - Invalid params! Param num must be a number
+2019-03-10 20:39:48 DEBUG Controller:16 - getEntity method is called!
+2019-03-10 20:39:48 ERROR Controller:49 - Invalid params! Param num must be a number
+2019-03-10 20:39:55 DEBUG Controller:16 - getEntity method is called!
+2019-03-10 20:39:55 ERROR Controller:49 - Invalid params! Param num must be a number
+2019-03-10 20:42:06 DEBUG Controller:16 - getEntity method is called!
+2019-03-10 20:42:06 DEBUG Controller:32 - getEntity method is successfully completed
+2019-03-10 20:42:32 DEBUG Controller:16 - getEntity method is called!
+2019-03-10 20:42:32 DEBUG Controller:32 - getEntity method is successfully completed
+2019-03-10 20:42:40 DEBUG Controller:16 - getEntity method is called!
+2019-03-10 20:42:40 ERROR Controller:49 - Invalid params! Param num must be an int number

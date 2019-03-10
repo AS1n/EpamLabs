@@ -22,7 +22,7 @@ public class Service {
         try {
             num = Integer.parseInt(numS);
         } catch (NumberFormatException e) {
-            return isError("Invalid params! Param num must be a number");
+            return isError("Invalid params! Param num must be an int number");
         }
 
         if(num<2) {
