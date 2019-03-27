@@ -40,4 +40,13 @@ public class Entity {
     public void setErrorMsg(ErrorMsg errorMsg) {
         this.errorMsg = errorMsg;
     }
+
+    @Override
+    public String toString() {
+        return "Entity{" +
+                "isEven=" + isEven +
+                ", isSimple=" + isSimple +
+                ", errorMsg=" + errorMsg +
+                '}';
+    }
 }

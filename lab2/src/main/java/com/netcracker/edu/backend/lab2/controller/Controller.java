@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashMap;
+
 @RestController
 @RequestMapping("/api/controller")
 public class Controller {
@@ -24,11 +26,15 @@ public class Controller {
     public ResponseEntity<Entity> getEntity(
             @RequestParam(name = "num", required = false) String numS
     ) {
-
         Entity entity = service.getEntity(numS);
         if(entity.getErrorMsg()!=null)
             return ResponseEntity.status(400).body(entity);
         return ResponseEntity.ok(entity);
+    }
+
+    @RequestMapping(value = "/cache")
+    public ResponseEntity<HashMap<Integer, Entity>> getCache() {
+        return ResponseEntity.ok(service.getCacheMap());
     }
 
 

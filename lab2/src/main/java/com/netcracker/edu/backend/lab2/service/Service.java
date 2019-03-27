@@ -1,14 +1,24 @@
 package com.netcracker.edu.backend.lab2.service;
 
-import com.netcracker.edu.backend.lab2.controller.Controller;
+import com.netcracker.edu.backend.lab2.cache.CacheMap;
 import com.netcracker.edu.backend.lab2.entity.Entity;
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import java.util.HashMap;
 
 @Component
 public class Service {
 
-    private static final Logger logger = Logger.getLogger(Controller.class);
+    private CacheMap map;
+
+    private static final Logger logger = Logger.getLogger(Service.class);
+
+    @Autowired
+    public Service(CacheMap map) {
+        this.map = map;
+    }
 
     public Entity getEntity(String numS) {
 
@@ -30,7 +40,18 @@ public class Service {
         }
 
         logger.debug("getEntity method is successfully completed");
-        return new Entity(getEven(num), getSimple(num));
+        Entity entity = new Entity(getEven(num), getSimple(num));
+        addToCacheMap(num, entity);
+        return entity;
+    }
+
+    private void addToCacheMap(Integer key, Entity value) {
+        if(map.getMap().get(key)==null)
+            map.add(key, value);
+    }
+
+    public HashMap<Integer, Entity> getCacheMap() {
+        return map.getMap();
     }
 
     private boolean getEven(int num) {
