@@ -1,15 +1,16 @@
 package com.netcracker.edu.backend.lab2.controller;
 
+import com.netcracker.edu.backend.lab2.entity.BulkData;
 import com.netcracker.edu.backend.lab2.entity.Entity;
 import com.netcracker.edu.backend.lab2.service.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/api/controller")
@@ -22,7 +23,7 @@ public class Controller {
         this.service = service;
     }
 
-    @RequestMapping(value = "", method = RequestMethod.GET)
+    @RequestMapping
     public ResponseEntity<Entity> getEntity(
             @RequestParam(name = "num", required = false) String numS
     ) {
@@ -32,10 +33,22 @@ public class Controller {
         return ResponseEntity.ok(entity);
     }
 
+    @RequestMapping(method = RequestMethod.POST)
+    public ResponseEntity<ArrayList<Entity>> getEntityF(
+            @RequestBody BulkData nums
+    ) {
+        ArrayList<Entity> list = service.getEntityF(nums);
+        return ResponseEntity.ok(list);
+    }
+
     @RequestMapping(value = "/cache")
     public ResponseEntity<HashMap<Integer, Entity>> getCache() {
         return ResponseEntity.ok(service.getCacheMap());
     }
 
+    @RequestMapping(value = "/count")
+    public ResponseEntity<Integer> getCount() {
+        return ResponseEntity.ok(service.getCount());
+    }
 
 }

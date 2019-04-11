@@ -1,27 +1,38 @@
 package com.netcracker.edu.backend.lab2.service;
 
 import com.netcracker.edu.backend.lab2.cache.CacheMap;
+import com.netcracker.edu.backend.lab2.counter.Counter;
+import com.netcracker.edu.backend.lab2.entity.BulkData;
 import com.netcracker.edu.backend.lab2.entity.Entity;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.HashMap;
+import java.util.*;
+import java.util.function.Predicate;
 
 @Component
 public class Service {
 
     private CacheMap map;
+    private Counter counter;
 
     private static final Logger logger = Logger.getLogger(Service.class);
 
     @Autowired
-    public Service(CacheMap map) {
+    public Service(CacheMap map, Counter counter) {
         this.map = map;
+        this.counter = counter;
+    }
+
+    public ArrayList<Entity> getEntityF(BulkData nums) {
+        ArrayList<Entity> entities = new ArrayList<>();
+        nums.getSet().forEach(num -> entities.add(getEntity(num)));
+        return entities;
     }
 
     public Entity getEntity(String numS) {
-
+        counter.inc();
         if(logger.isDebugEnabled()){
             logger.debug("getEntity method is called!");
         }
@@ -40,6 +51,10 @@ public class Service {
         }
 
         logger.debug("getEntity method is successfully completed");
+        if(map.get(num)!=null) {
+            return map.get(num);
+        }
+
         Entity entity = new Entity(getEven(num), getSimple(num));
         addToCacheMap(num, entity);
         return entity;
@@ -54,6 +69,10 @@ public class Service {
         return map.getMap();
     }
 
+    public Integer getCount() {
+        return counter.getCount();
+    }
+
     private boolean getEven(int num) {
         return num % 2 == 0;
     }
@@ -64,6 +83,10 @@ public class Service {
                 return false;
         }
         return true;
+    }
+
+    private static Boolean getSimpleF(Integer num, Predicate<Integer> predicate) {
+        return predicate.test(num);
     }
 
     private Entity isError(String msg) {
