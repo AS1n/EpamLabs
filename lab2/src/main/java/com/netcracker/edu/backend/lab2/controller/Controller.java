@@ -1,16 +1,15 @@
 package com.netcracker.edu.backend.lab2.controller;
 
-import com.netcracker.edu.backend.lab2.entity.BulkData;
-import com.netcracker.edu.backend.lab2.entity.Entity;
+import com.netcracker.edu.backend.lab2.cache.Cache;
+import com.netcracker.edu.backend.lab2.classes.BulkData;
+import com.netcracker.edu.backend.lab2.entity.ResEntity;
+import com.netcracker.edu.backend.lab2.classes.BulkResponse;
 import com.netcracker.edu.backend.lab2.service.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Set;
 
 @RestController
 @RequestMapping("/api/controller")
@@ -24,31 +23,39 @@ public class Controller {
     }
 
     @RequestMapping
-    public ResponseEntity<Entity> getEntity(
+    public ResponseEntity<ResEntity> getEntity(
             @RequestParam(name = "num", required = false) String numS
     ) {
-        Entity entity = service.getEntity(numS);
-        if(entity.getErrorMsg()!=null)
-            return ResponseEntity.status(400).body(entity);
-        return ResponseEntity.ok(entity);
+        return ResponseEntity.ok(service.getEntity(numS));
+    }
+
+    @RequestMapping("/future")
+    public ResponseEntity<?> getEntityBulk(
+            @RequestParam(name = "future_id") Integer futureId
+    ) {
+        ArrayList<ResEntity> entities = service.getEntityFuture(futureId);
+        if(entities==null)
+            return ResponseEntity.ok("This operation is still computing. Try a bit later.");
+        return ResponseEntity.ok(entities);
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<ArrayList<Entity>> getEntityF(
+    public ResponseEntity<Integer> getEntityFuture(
             @RequestBody BulkData nums
     ) {
-        ArrayList<Entity> list = service.getEntityF(nums);
-        return ResponseEntity.ok(list);
+        return ResponseEntity.ok(service.getEntityBulk(nums));
     }
+
+
 
     @RequestMapping(value = "/cache")
-    public ResponseEntity<HashMap<Integer, Entity>> getCache() {
-        return ResponseEntity.ok(service.getCacheMap());
+    public ResponseEntity<Cache> getCache() {
+        return ResponseEntity.ok(service.getCache());
     }
 
-    @RequestMapping(value = "/count")
-    public ResponseEntity<Integer> getCount() {
-        return ResponseEntity.ok(service.getCount());
+    @RequestMapping(value = "/cache/init")
+    public void getCount() {
+        service.initCache();
     }
 
 }

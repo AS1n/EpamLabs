@@ -1,97 +1,72 @@
 package com.netcracker.edu.backend.lab2.service;
 
-import com.netcracker.edu.backend.lab2.cache.CacheMap;
-import com.netcracker.edu.backend.lab2.counter.Counter;
-import com.netcracker.edu.backend.lab2.entity.BulkData;
-import com.netcracker.edu.backend.lab2.entity.Entity;
-import org.apache.log4j.Logger;
+import com.netcracker.edu.backend.lab2.cache.Cache;
+import com.netcracker.edu.backend.lab2.classes.*;
+import com.netcracker.edu.backend.lab2.entity.ResEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.*;
-import java.util.function.Predicate;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 @Component
 public class Service {
 
-    private CacheMap map;
-    private Counter counter;
+    private NumEntityService numEntityService;
+    private Cache cache;
 
-    private static final Logger logger = Logger.getLogger(Service.class);
+    private ExecutorService executor = Executors.newSingleThreadExecutor();
 
     @Autowired
-    public Service(CacheMap map, Counter counter) {
-        this.map = map;
-        this.counter = counter;
+    public Service(Cache cache, NumEntityService numEntityService) {
+        this.cache = cache;
+        this.numEntityService = numEntityService;
     }
 
-    public ArrayList<Entity> getEntityF(BulkData nums) {
-        ArrayList<Entity> entities = new ArrayList<>();
-        nums.getSet().forEach(num -> entities.add(getEntity(num)));
-        return entities;
+
+    public Future<ArrayList<ResEntity>> calculate(BulkData nums) {
+        return executor.submit(() -> {
+            Thread.sleep(10000);
+            ArrayList<ResEntity> entities = new ArrayList<>();
+            nums.getSet().forEach(num -> entities.add(getEntity(num)));
+//            cache.orderFutures(entities);
+            return entities;
+        });
     }
 
-    public Entity getEntity(String numS) {
-        counter.inc();
-        if(logger.isDebugEnabled()){
-            logger.debug("getEntity method is called!");
+    public Integer getEntityBulk(BulkData nums) {
+        Future<ArrayList<ResEntity>> future = calculate(nums);
+        cache.addToMap(future);
+
+//        Statistics statistics = setStatistics(entities);
+        return cache.getCurrentFutureId();
+    }
+
+    public ArrayList<ResEntity> getEntityFuture(Integer futureId){
+        Future<ArrayList<ResEntity>> future = cache.getFuture(futureId);
+        if(future.isDone()) {
+            try {
+                return future.get();
+            } catch (InterruptedException | ExecutionException e) {
+                e.printStackTrace();
+            }
         }
-        if(numS==null) {
-            return isError("Invalid params! Need parameter num");
-        }
-        int num;
-        try {
-            num = Integer.parseInt(numS);
-        } catch (NumberFormatException e) {
-            return isError("Invalid params! Param num must be an int number");
-        }
-
-        if(num<2) {
-            return isError("Invalid params! Param num must be > 2");
-        }
-
-        logger.debug("getEntity method is successfully completed");
-        if(map.get(num)!=null) {
-            return map.get(num);
-        }
-
-        Entity entity = new Entity(getEven(num), getSimple(num));
-        addToCacheMap(num, entity);
-        return entity;
+        return null;
     }
 
-    private void addToCacheMap(Integer key, Entity value) {
-        if(map.getMap().get(key)==null)
-            map.add(key, value);
+    public ResEntity getEntity(String num) {
+        return numEntityService.getEntity(num);
     }
 
-    public HashMap<Integer, Entity> getCacheMap() {
-        return map.getMap();
+    public void initCache() {
+        cache.initCache();
     }
 
-    public Integer getCount() {
-        return counter.getCount();
-    }
-
-    private boolean getEven(int num) {
-        return num % 2 == 0;
-    }
-
-    private boolean getSimple(int num) {
-        for(int i = 2; i < Math.sqrt(num); i++) {
-            if(num%i==0)
-                return false;
-        }
-        return true;
-    }
-
-    private static Boolean getSimpleF(Integer num, Predicate<Integer> predicate) {
-        return predicate.test(num);
-    }
-
-    private Entity isError(String msg) {
-        logger.error(msg);
-        return new Entity(msg);
+    public Cache getCache() {
+        return cache;
     }
 
 }

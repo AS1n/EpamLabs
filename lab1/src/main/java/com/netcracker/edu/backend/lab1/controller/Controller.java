@@ -20,7 +20,7 @@ public class Controller {
     public ResponseEntity<Entity> getEntity(
             @RequestParam(name = "num") Integer num
     ) {
-//        Entity entity = new Entity(service.getEven(num), service.getSimple(num));
+//        Entity classes = new Entity(service.getEven(num), service.getSimple(num));
         return ResponseEntity.ok(new Entity(service.getEven(num), service.getSimple(num)));
     }
 
