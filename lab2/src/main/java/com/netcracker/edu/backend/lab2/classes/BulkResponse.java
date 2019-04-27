@@ -17,11 +17,4 @@ public class BulkResponse {
         this.list = list;
     }
 
-    public ArrayList<ResEntity> getList() {
-        return list;
-    }
-
-    public Statistics getStatistics() {
-        return statistics;
-    }
 }

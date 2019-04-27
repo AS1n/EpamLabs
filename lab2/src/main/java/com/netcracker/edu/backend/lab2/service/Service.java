@@ -32,7 +32,6 @@ public class Service {
             Thread.sleep(10000);
             ArrayList<ResEntity> entities = new ArrayList<>();
             nums.getSet().forEach(num -> entities.add(getEntity(num)));
-//            cache.orderFutures(entities);
             return entities;
         });
     }
@@ -41,7 +40,6 @@ public class Service {
         Future<ArrayList<ResEntity>> future = calculate(nums);
         cache.addToMap(future);
 
-//        Statistics statistics = setStatistics(entities);
         return cache.getCurrentFutureId();
     }
 

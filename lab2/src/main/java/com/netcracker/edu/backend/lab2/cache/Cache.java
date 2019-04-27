@@ -15,8 +15,6 @@ public class Cache {
 
     private ArrayList<ResEntity> entities;
     private HashMap<Long, ResEntity> map = new HashMap<>();
-//    private HashMap<Long, ArrayList<ResEntity>> futures = new HashMap<>();
-//    private ArrayList<TrueMapItem> futures;
     private HashMap<Integer, Future<ArrayList<ResEntity>>> futures = new HashMap<>();
 
     private Integer currentFutureId = 0;
@@ -77,28 +75,12 @@ public class Cache {
         return entities;
     }
 
-    public void setEntities(ArrayList<ResEntity> entities) {
-        this.entities = entities;
-    }
-
-    public void setMap(HashMap<Long, ResEntity> map) {
-        this.map = map;
-    }
-
     public HashMap<Integer, Future<ArrayList<ResEntity>>> getFutures() {
         return futures;
     }
 
-    public void setFutures(HashMap<Integer, Future<ArrayList<ResEntity>>> futures) {
-        this.futures = futures;
-    }
-
     public Integer getCurrentFutureId() {
         return currentFutureId;
-    }
-
-    public void setCurrentFutureId(Integer currentFutureId) {
-        this.currentFutureId = currentFutureId;
     }
 
     @Override
@@ -107,11 +89,13 @@ public class Cache {
         if (o == null || getClass() != o.getClass()) return false;
         Cache cache = (Cache) o;
         return Objects.equals(entities, cache.entities) &&
-                Objects.equals(map, cache.map);
+                Objects.equals(map, cache.map) &&
+                Objects.equals(futures, cache.futures) &&
+                Objects.equals(currentFutureId, cache.currentFutureId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(entities, map);
+        return Objects.hash(entities, map, futures, currentFutureId);
     }
 }

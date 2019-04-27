@@ -3,7 +3,6 @@ package com.netcracker.edu.backend.lab2.controller;
 import com.netcracker.edu.backend.lab2.cache.Cache;
 import com.netcracker.edu.backend.lab2.classes.BulkData;
 import com.netcracker.edu.backend.lab2.entity.ResEntity;
-import com.netcracker.edu.backend.lab2.classes.BulkResponse;
 import com.netcracker.edu.backend.lab2.service.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

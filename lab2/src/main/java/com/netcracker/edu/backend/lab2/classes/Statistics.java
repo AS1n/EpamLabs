@@ -54,6 +54,7 @@ public class Statistics {
         }
     }
 
+    @Deprecated
     public void setMostPopular(ArrayList<ResEntity> entities) {
         Map<ResEntity, Integer> map = new HashMap<>(4);
         ArrayList<ResEntity> entAnswers = new ArrayList<>();
@@ -91,36 +92,12 @@ public class Statistics {
         return maxAnsId;
     }
 
-    public ResEntity getMostPopular() {
-        return mostPopular;
-    }
-
-    public Long getProvided() {
-        return provided;
-    }
-
-    public void setProvided(Long provided) {
-        this.provided = provided;
-    }
-
-    public Long getIncorrect() {
-        return incorrect;
-    }
-
     public void setIncorrect(Long incorrect) {
         this.incorrect = incorrect;
     }
 
-    public ResEntity getMax() {
-        return max;
-    }
-
     public void setMax(ResEntity max) {
         this.max = max;
-    }
-
-    public ResEntity getMin() {
-        return min;
     }
 
     public void setMin(ResEntity min) {

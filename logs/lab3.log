@@ -1,0 +1,36 @@
+2019-04-27 09:52:19 DEBUG Service:45 - getEntity method is successfully completed
+2019-04-27 09:52:20 DEBUG Service:45 - getEntity method is successfully completed
+2019-04-27 09:52:20 DEBUG Service:45 - getEntity method is successfully completed
+2019-04-27 09:52:20 DEBUG Service:45 - getEntity method is successfully completed
+2019-04-27 09:52:20 DEBUG Service:45 - getEntity method is successfully completed
+2019-04-27 09:52:20 ERROR Service:60 - Invalid params! Param num must be > 2
+2019-04-27 09:52:20 DEBUG Service:45 - getEntity method is successfully completed
+2019-04-27 09:52:20 ERROR Service:60 - Invalid params! Param num must be an int number
+2019-04-27 09:53:57 DEBUG Service:45 - getEntity method is successfully completed
+2019-04-27 09:53:57 DEBUG Service:45 - getEntity method is successfully completed
+2019-04-27 09:53:57 DEBUG Service:45 - getEntity method is successfully completed
+2019-04-27 09:53:57 DEBUG Service:45 - getEntity method is successfully completed
+2019-04-27 09:53:57 DEBUG Service:45 - getEntity method is successfully completed
+2019-04-27 09:53:57 DEBUG Service:45 - getEntity method is successfully completed
+2019-04-27 09:56:13 DEBUG Service:45 - getEntity method is successfully completed
+2019-04-27 09:56:25 DEBUG Service:45 - getEntity method is successfully completed
+2019-04-27 09:56:25 DEBUG Service:45 - getEntity method is successfully completed
+2019-04-27 09:56:25 DEBUG Service:45 - getEntity method is successfully completed
+2019-04-27 09:56:25 DEBUG Service:45 - getEntity method is successfully completed
+2019-04-27 09:56:25 DEBUG Service:45 - getEntity method is successfully completed
+2019-04-27 09:56:57 DEBUG Service:45 - getEntity method is successfully completed
+2019-04-27 09:56:57 DEBUG Service:45 - getEntity method is successfully completed
+2019-04-27 09:56:57 DEBUG Service:45 - getEntity method is successfully completed
+2019-04-27 09:56:57 DEBUG Service:45 - getEntity method is successfully completed
+2019-04-27 09:56:57 DEBUG Service:45 - getEntity method is successfully completed
+2019-04-27 09:56:57 ERROR Service:60 - Invalid params! Param num must be > 2
+2019-04-27 09:56:57 DEBUG Service:45 - getEntity method is successfully completed
+2019-04-27 09:56:57 ERROR Service:60 - Invalid params! Param num must be an int number
+2019-04-27 09:58:13 DEBUG Service:45 - getEntity method is successfully completed
+2019-04-27 09:58:14 DEBUG Service:45 - getEntity method is successfully completed
+2019-04-27 09:58:14 DEBUG Service:45 - getEntity method is successfully completed
+2019-04-27 09:58:14 DEBUG Service:45 - getEntity method is successfully completed
+2019-04-27 09:58:14 DEBUG Service:45 - getEntity method is successfully completed
+2019-04-27 09:58:14 ERROR Service:60 - Invalid params! Param num must be > 2
+2019-04-27 09:58:14 DEBUG Service:45 - getEntity method is successfully completed
+2019-04-27 09:58:14 ERROR Service:60 - Invalid params! Param num must be an int number
